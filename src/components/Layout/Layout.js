@@ -1,12 +1,13 @@
 import { Auxs } from "../../hoc/Auxs";
+import Style from "./Layout.module.css";
 
 export const Layout = ({ children }) => {
 	return (
 		<Auxs>
-			<div>
-				<h2>Toolbar, SideDrawer, Backdrop</h2>
-			</div>
-			<main>{children}</main>
+			<div>Toolbar, SideDrawer, Backdrop</div>
+			<main className={Style.Content}>
+				{children}
+			</main>
 		</Auxs>
 	);
 };
