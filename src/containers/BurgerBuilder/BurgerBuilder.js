@@ -1,9 +1,10 @@
+import { Burger } from "../../components/Burger/Burger";
 import { Auxs } from "../../hoc/Auxs";
 
 export const BurgerBuilder = () => {
 	return (
 		<Auxs>
-			<div>Burger</div>
+			<Burger />
 			<div>Build Controls</div>
 		</Auxs>
 	);
