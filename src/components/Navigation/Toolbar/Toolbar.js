@@ -1,4 +1,5 @@
 import { Logo } from "../../Logo/Logo";
+import { NavigationItems } from "../NavigationItems/NavigationItems";
 import Style from "./Toolbar.module.css";
 
 export const Toolbar = () => {
@@ -6,7 +7,9 @@ export const Toolbar = () => {
 		<header className={Style.Toolbar}>
 			<div>HOME</div>
 			<Logo />
-			<nav>...</nav>
+			<nav>
+				<NavigationItems />
+			</nav>
 		</header>
 	);
 };
