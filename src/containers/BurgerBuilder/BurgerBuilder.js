@@ -71,6 +71,7 @@ export const BurgerBuilder = () => {
 					ingredients={ingredients}
 					cancelOrder={purchaseCancelHandler}
 					confirmOrder={purchaseContinueHandler}
+					totalPrice={totalPrice}
 				/>
 			</Modal>
 			<Burger ingredients={ingredients} />
