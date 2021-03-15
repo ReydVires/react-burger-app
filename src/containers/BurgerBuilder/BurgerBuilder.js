@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BuildControls } from "../../components/Burger/BuildControls/BuildControls";
 import { Burger } from "../../components/Burger/Burger";
+import { OrderSummary } from "../../components/Burger/OrderSummary/OrderSummary";
+import { Modal } from "../../components/UI/Modal/Modal";
 import { Auxs } from "../../hoc/Auxs";
 
 const priceList = {
@@ -18,6 +20,7 @@ export const BurgerBuilder = () => {
 		meat: 0,
 	});
 	const [totalPrice, setTotalPrice] = useState(0);
+	const [ordering, setOrdering] = useState(false);
 
 	const updateIngredients = (type, count) => {
 		const updateIngredients = {
@@ -49,12 +52,20 @@ export const BurgerBuilder = () => {
 		return { type, isDisable: (disabled <= 0) };
 	});
 
+	const purchaseHandler = () => {
+		setOrdering(true);
+	};
+
 	return (
 		<Auxs>
+			<Modal show={ordering}>
+				<OrderSummary ingredients={ingredients} />
+			</Modal>
 			<Burger ingredients={ingredients} />
 			<BuildControls
 				handleAdd={handleAddIngredient}
 				handleRemove={handleRemoveIngredient}
+				handleOrder={purchaseHandler}
 				dataListInfo={disabledInfo}
 				price={totalPrice}
 			/>

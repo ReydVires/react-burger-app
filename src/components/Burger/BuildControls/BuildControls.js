@@ -9,7 +9,7 @@ const controls = [
 	{ label: "Bacon", type: "bacon" },
 ];
 
-export const BuildControls = ({ handleAdd, handleRemove, dataListInfo, price }) => {
+export const BuildControls = ({ handleAdd, handleRemove, dataListInfo, price, handleOrder }) => {
 	const handleDisable = (type) => {
 		const item = dataListInfo.find((val) => val.type === type);
 		return item.isDisable;
@@ -33,7 +33,8 @@ export const BuildControls = ({ handleAdd, handleRemove, dataListInfo, price }) 
 			))}
 			<button
 				className={Style.OrderButton}
-				disabled={disabledOrder()}>ORDER NOW!</button>
+				disabled={disabledOrder()}
+				onClick={handleOrder}>ORDER NOW!</button>
 		</div>
 	);
 };
@@ -41,6 +42,7 @@ export const BuildControls = ({ handleAdd, handleRemove, dataListInfo, price }) 
 BuildControls.propTypes = {
 	handleAdd: PropTypes.func.isRequired,
 	handleRemove: PropTypes.func.isRequired,
+	handleOrder: PropTypes.func.isRequired,
 	dataListInfo: PropTypes.array,
 	price: PropTypes.number,
 };
