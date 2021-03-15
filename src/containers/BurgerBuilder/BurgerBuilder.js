@@ -56,9 +56,13 @@ export const BurgerBuilder = () => {
 		setOrdering(true);
 	};
 
+	const purchaseCancelHandler = () => {
+		setOrdering(false);
+	};
+
 	return (
 		<Auxs>
-			<Modal show={ordering}>
+			<Modal show={ordering} modalClosed={purchaseCancelHandler}>
 				<OrderSummary ingredients={ingredients} />
 			</Modal>
 			<Burger ingredients={ingredients} />
