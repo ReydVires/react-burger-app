@@ -60,10 +60,18 @@ export const BurgerBuilder = () => {
 		setOrdering(false);
 	};
 
+	const purchaseContinueHandler = () => {
+		console.log("Confirmed!");
+	};
+
 	return (
 		<Auxs>
 			<Modal show={ordering} modalClosed={purchaseCancelHandler}>
-				<OrderSummary ingredients={ingredients} />
+				<OrderSummary
+					ingredients={ingredients}
+					cancelOrder={purchaseCancelHandler}
+					confirmOrder={purchaseContinueHandler}
+				/>
 			</Modal>
 			<Burger ingredients={ingredients} />
 			<BuildControls

@@ -1,6 +1,7 @@
 import { Auxs } from "../../../hoc/Auxs";
+import { Button } from "../../UI/Button/Button";
 
-export const OrderSummary = ({ ingredients }) => {
+export const OrderSummary = ({ ingredients, cancelOrder, confirmOrder }) => {
 	const transformIngredients = Object.keys(ingredients).map((key) => {
 		return (
 			<li key={key}>
@@ -17,6 +18,8 @@ export const OrderSummary = ({ ingredients }) => {
 				{transformIngredients}
 			</ul>
 			<p>Continue to checkout?</p>
+			<Button btnType="Danger" onClick={cancelOrder}>Cancel</Button>
+			<Button btnType="Success" onClick={confirmOrder}>Continue</Button>
 		</Auxs>
 	);
 };
