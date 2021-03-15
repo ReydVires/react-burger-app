@@ -55,7 +55,7 @@ export const BurgerBuilder = () => {
 			<BuildControls
 				handleAdd={handleAddIngredient}
 				handleRemove={handleRemoveIngredient}
-				disabled={disabledInfo}
+				dataListInfo={disabledInfo}
 				price={totalPrice}
 			/>
 		</Auxs>

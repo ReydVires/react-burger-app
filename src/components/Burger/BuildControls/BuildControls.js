@@ -9,10 +9,14 @@ const controls = [
 	{ label: "Bacon", type: "bacon" },
 ];
 
-export const BuildControls = ({ handleAdd, handleRemove, disabled, price }) => {
+export const BuildControls = ({ handleAdd, handleRemove, dataListInfo, price }) => {
 	const handleDisable = (type) => {
-		const item = disabled.find((val) => val.type === type);
+		const item = dataListInfo.find((val) => val.type === type);
 		return item.isDisable;
+	};
+
+	const disabledOrder = () => {
+		return dataListInfo.every((val) => val.isDisable);
 	};
 
 	return (
@@ -27,6 +31,9 @@ export const BuildControls = ({ handleAdd, handleRemove, disabled, price }) => {
 					isDisable={handleDisable(ctrl.type)}
 				/>
 			))}
+			<button
+				className={Style.OrderButton}
+				disabled={disabledOrder()}>ORDER NOW!</button>
 		</div>
 	);
 };
@@ -34,6 +41,6 @@ export const BuildControls = ({ handleAdd, handleRemove, disabled, price }) => {
 BuildControls.propTypes = {
 	handleAdd: PropTypes.func.isRequired,
 	handleRemove: PropTypes.func.isRequired,
-	disabled: PropTypes.array,
+	dataListInfo: PropTypes.array,
 	price: PropTypes.number,
 };
