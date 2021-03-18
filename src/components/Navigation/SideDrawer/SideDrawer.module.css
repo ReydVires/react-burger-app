@@ -16,6 +16,9 @@
 	.SideDrawer {
 		display: none;
 	}
+	.MobileOnly {
+		display: none;
+	}
 }
 
 .Open {

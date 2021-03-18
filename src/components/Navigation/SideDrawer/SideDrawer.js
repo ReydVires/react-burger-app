@@ -13,7 +13,9 @@ export const SideDrawer = ({ open, close }) => {
 
 	return (
 		<Auxs>
-			<Backdrop show={open} onClick={close}/>
+			<div className={Style.MobileOnly}>
+				<Backdrop show={open} onClick={close}/>
+			</div>
 			<div className={transformStyle.join(" ")}>
 				<div className={Style.Logo}><Logo /></div>
 				<nav>
