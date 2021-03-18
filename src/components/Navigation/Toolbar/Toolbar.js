@@ -5,7 +5,9 @@ import Style from "./Toolbar.module.css";
 export const Toolbar = ({ openSideDrawer }) => {
 	return (
 		<header className={Style.Toolbar}>
-			<div onClick={openSideDrawer}>HOME</div>
+			<div
+				className={Style.ToggleDrawer}
+				onClick={openSideDrawer}>HOME</div>
 			<Logo />
 			<nav className={Style.DesktopOnly}>
 				<NavigationItems />
