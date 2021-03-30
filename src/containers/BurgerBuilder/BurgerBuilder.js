@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { instance as axios } from "../../axios-orders";
 import { BuildControls } from "../../components/Burger/BuildControls/BuildControls";
 import { Burger } from "../../components/Burger/Burger";
 import { OrderSummary } from "../../components/Burger/OrderSummary/OrderSummary";
 import { Modal } from "../../components/UI/Modal/Modal";
+import { Spinner } from "../../components/UI/Spinner/Spinner";
 import { Auxs } from "../../hoc/Auxs";
 
 const priceList = {
@@ -21,6 +23,7 @@ export const BurgerBuilder = () => {
 	});
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [ordering, setOrdering] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const updateIngredients = (type, count) => {
 		const updateIngredients = {
@@ -61,18 +64,38 @@ export const BurgerBuilder = () => {
 	};
 
 	const purchaseContinueHandler = () => {
-		console.log("Confirmed!");
+		setLoading(true);
+		const order = {
+			ingredients: ingredients,
+			price: totalPrice,
+			customer: {
+				name: "Lorem",
+			}
+		};
+		axios.post("/orders.json", order)
+			.then((response) => {
+				setOrdering(false);
+				console.log(response);
+			})
+			.catch((err) => {
+				console.log(err.message);
+			})
+			.finally(() => {
+				setLoading(false);
+			});
 	};
 
 	return (
 		<Auxs>
 			<Modal show={ordering} modalClosed={purchaseCancelHandler}>
-				<OrderSummary
-					ingredients={ingredients}
-					cancelOrder={purchaseCancelHandler}
-					confirmOrder={purchaseContinueHandler}
-					totalPrice={totalPrice}
-				/>
+				{loading
+					? <Spinner />
+					: <OrderSummary
+							ingredients={ingredients}
+							cancelOrder={purchaseCancelHandler}
+							confirmOrder={purchaseContinueHandler}
+							totalPrice={totalPrice}
+						/>}
 			</Modal>
 			<Burger ingredients={ingredients} />
 			<BuildControls
